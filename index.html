@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QPay | Modern Banking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #d1dbd1;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .bank-card {
+            background: linear-gradient(135deg, #b8c9b8 0%, #8ea38e 100%);
+            color: #1a2e1a;
+        }
+    </style>
+</head>
+
+<body class="p-4 md:p-8 min-h-screen flex items-center justify-center">
+
+    <div class="glass-card w-full max-w-6xl min-h-[80vh] flex overflow-hidden shadow-2xl">
+        <aside class="w-64 border-r border-gray-200 p-6 flex flex-col gap-8 hidden md:flex">
+            <h1 class="text-2xl font-bold text-green-900">QPay</h1>
+            <nav class="flex flex-col gap-4 text-gray-600">
+                <a href="#" class="font-semibold text-black">Overview</a>
+                <a href="#">Cards</a>
+                <a href="#">Payments</a>
+                <a href="#">Exchange</a>
+                <a href="#" class="mt-auto">Settings</a>
+            </nav>
+        </aside>
+
+        <main class="flex-1 p-8 overflow-y-auto">
+            <header class="flex justify-between items-center mb-8">
+                <h2 class="text-xl font-bold">Your cards</h2>
+                <button class="bg-black text-white px-4 py-2 rounded-full text-sm">+ Add new</button>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="bank-card p-8 rounded-[32px] shadow-lg relative h-52 flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <span class="text-2xl font-bold">1242.58 USD</span>
+                            <div class="w-10 h-6 bg-white/30 rounded-md"></div>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="tracking-widest text-sm">5878 5641 2145 0058</p>
+                            <p class="text-xs opacity-75">Exp 09/29</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/50 p-6 rounded-2xl">
+                            <p class="text-gray-500 text-xs">Credit Limit</p>
+                            <p class="text-lg font-bold">751/1000 USD</p>
+                        </div>
+                        <div class="bg-white/50 p-6 rounded-2xl">
+                            <p class="text-gray-500 text-xs">Online Limit</p>
+                            <p class="text-lg font-bold">400/3000 USD</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <h3 class="font-bold">Recent activity</h3>
+                    <div class="space-y-4" id="activity-list">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const activities = [{
+            name: 'Starbucks',
+            category: 'Cafe',
+            amount: '-$50',
+            date: '24 May'
+        }, {
+            name: 'Salary',
+            category: 'Deposit',
+            amount: '+$2800',
+            date: '12 May'
+        }, {
+            name: 'H&M',
+            category: 'Shopping',
+            amount: '-$240',
+            date: '08 May'
+        }];
+
+        const container = document.getElementById('activity-list');
+        container.innerHTML = activities.map(act => `
+            <div class="flex justify-between items-center p-3 bg-white/30 rounded-xl">
+                <div>
+                    <p class="font-semibold text-sm">${act.name}</p>
+                    <p class="text-xs text-gray-500">${act.category}</p>
+                </div>
+                <div class="text-right">
+                    <p class="font-bold text-sm">${act.amount}</p>
+                    <p class="text-[10px] text-gray-400">${act.date}</p>
+                </div>
+            </div>
+        `).join('');
+    </script>
+</body>
+
+</html>
